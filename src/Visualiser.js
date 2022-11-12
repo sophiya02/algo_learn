@@ -3,9 +3,13 @@ import "./Visualiser.css";
 import { useState } from "react";
 
 function Visualiser() {
-  const [arr, updateArr] = useState([234, 43, 55, 63, 5, 6, 235, 547]);
+  const [bubbleArray, updateArr] = useState([234, 43, 55, 63, 5, 6, 235, 547]);
 
-  let bubbleSort = () => {
+  function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  async function bubbleSort(arr) {
     let tempArr = [...arr];
     for (var i = 0; i < tempArr.length; i++) {
       // Last i elements are already in place
@@ -17,25 +21,30 @@ function Visualiser() {
           var temp = tempArr[j];
           tempArr[j] = tempArr[j + 1];
           tempArr[j + 1] = temp;
+
+          console.log(i, j, tempArr);
+          updateArr(tempArr);
+          await sleep(1000);
         }
-        console.log(i, j, tempArr);
-        updateArr(tempArr);
+
+        // updateArr(tempArr);
       }
+      await sleep(1000);
     }
     // Print the sorted array
-    console.log(tempArr);
-  };
+    // console.log(tempArr);
+  }
 
   return (
     <div className="visualiser">
-      {arr.map((idx) => {
+      {bubbleArray.map((idx) => {
         return (
           <div className="visualiser__bar" style={{ height: idx / 2 }}>
             {" "}
           </div>
         );
       })}
-      <button onClick={() => bubbleSort(arr)}> Start</button>
+      <button onClick={() => bubbleSort(bubbleArray)}> Start</button>
     </div>
   );
 }
