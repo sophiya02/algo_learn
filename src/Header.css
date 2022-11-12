@@ -1,0 +1,23 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  background-color: #f6f6f6;
+}
+
+.header__logo {
+  margin-left: 5px;
+}
+
+.header__navigation {
+  margin-left: auto;
+}
+
+.header__navigationButton {
+  margin: 5px;
+  border: none;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #fc3c3c;
+}
